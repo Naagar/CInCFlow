@@ -2,7 +2,7 @@
 This is an CInCFlow paper project page.
 
 url: [project_page_CInCFlow](https://naagar.github.io/project_page_CInCFlow/)
-
+## [Paper](https://openreview.net/forum?id=kl1ds_AeLRM)
 
 
 ## Start using the template
