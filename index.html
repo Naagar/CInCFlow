@@ -52,20 +52,23 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Inverse-Flow: Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows</h1>
+            <h1 class="title is-1 publication-title">CInC Flow: Characterizable Invertible 3x3 Convolution</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://researchweb.iiit.ac.in/~sandeep.nagar/" target="_blank">Sandeep Nagar</a>,</span>
+                <a href="https://researchweb.iiit.ac.in/~sandeep.nagar/" target="_blank">Sandeep Nagar<sup>1</sup></a>,</span>
                 <span class="author-block">
-                  <a href="https://girishvarma.in/" target="_blank">Girish Varma</a></span>
+                <a href="https://scholar.google.com/citations?user=UI9gFMoAAAAJ&hl=fr" target="_blank">Marius Dufraisse<sup>2</sup></a></span>
+                  <a href="https://girishvarma.in/" target="_blank">Girish Varma<sup>1</sup></a></span>
                   <!-- <span class="author-block">
                     <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
                   </span> -->
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">ML Lab, IIIT Hyderabad<br> AISTATS 2025</span>
+                    <span class="author-block">ML Lab, IIIT Hyderabad<sup>1</sup><br>
+                      <span class="author-block">Computer Science Dept., École Normale Supérieure (ENS), Paris-Saclay, France<sup>2</sup><br>
+                        Workshop on Tractable Probabilistic Modeling, UAI 2021</span>
                     <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
                   </div>
 
@@ -73,7 +76,7 @@
                     <div class="publication-links">
                       <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/2410.14634.pdf" target="_blank"
+                        <a href="https://openreview.net/pdf/4c98d5b0e8501b2ce56be770b641689c0706ba67.pdf" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -84,7 +87,7 @@
 
                     <!-- Supplementary PDF link -->
                     <span class="link-block">
-                      <a href="static/pdfs/if_supplementary_material.pdf" target="_blank"
+                      <a href="https://openreview.net/pdf/4c98d5b0e8501b2ce56be770b641689c0706ba67.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
@@ -95,7 +98,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/girish-lab/Inverse-Flow" target="_blank"
+                    <a href="https://github.com/Naagar/Normalizing_Flow_3x3_inv" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -106,7 +109,7 @@
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2410.14634" target="_blank"
+                  <a href="https://arxiv.org/abs/2107.01358" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -130,25 +133,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            The inverse of an invertible convolution is
-            an important operation that comes up in
-            Normalizing Flows, Image Deblurring, etc.
-            The naive algorithm for backpropagation of
-            this operation using Gaussian elimination has
-            running time O(n<sup>3</sup>) where n is the number
-            of pixels in the image. We give a fast parallel backpropagation algorithm with running
-            time O(√n) for a square image and provide
-            a GPU implementation of the same. Inverse
-            of Convolutions are usually used in Normalizing Flows in the sampling pass, making
-            them slow. We propose to use the Inverse of
-            Convolutions in the forward (image to latent
-            vector) pass of the Normalizing flow. Since
-            the sampling pass is the inverse of the forward pass, it will use convolutions only, resulting in efficient sampling times. We use
-            our parallel backpropagation algorithm for
-            optimizing the inverse of convolution layer resulting in fast training times also. We implement this approach in various Normalizing Flow backbones, resulting in our Inverse-
-            Flow models. We benchmark Inverse-Flow on
-            standard datasets and show significantly improved sampling times with similar bits per
-            dimension compared to previous models.
+            Normalizing flows are an essential alternative to
+GANs for generative modelling, which can be optimized directly on the maximum likelihood of the
+dataset. They also allow computation of the exact
+latent vector corresponding to an image since they
+are composed of invertible transformations. However, the requirement of invertibility of the transformation prevents standard and expressive neural
+network models such as CNNs from being directly
+used. Emergent convolutions were proposed to construct an invertible 3×3 CNN layer using a pair
+of masked CNN layers, making them inefficient.
+We study conditions such that 3×3 CNNs are invertible, allowing them to construct expressive normalizing flows. We derive necessary and sufficient
+conditions on a padded CNN for it to be invertible. Our conditions for invertibility are simple, can
+easily be maintained during the training process.
+Since we require only a single CNN layer for every effective invertible CNN layer, our approach is
+more efficient than emerging convolutions. We also
+proposed a new coupling layer for more flexibility and expressiveness, Quad-coupling. We benchmark our approach and show similar performance
+results to emergent convolutions while improving
+the model’s efficiency.
           </p>
         </div>
       </div>
@@ -165,31 +165,26 @@
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item">
         <!-- Your image here -->
-        <img src="static/images/multiScale_if_flow.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/padding_masking.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Multi Scale Flow arch for Inverse-Flow.
+          The matrix corresponding to a convolution with kernel
+of size 3 applied to an input of size 4 × 4 padded only on one side and with 2 channels.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/if_classification.png" alt="MY ALT TEXT"/>
+        <img src="static/images/quad_coupling.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Classification using Inverse of Convolution layer trained using proposed backprop algo.
+          Quad-Coupling Layer design.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/Inv_conv_LT.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/flow_arch.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Inverse of Convolution Layer.
+          CInCFlow model architecture.
         </h2>
-      </div>
-      <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/x_and_x_recon.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Original and Reconstructed Images.
-      </h2>
+      
     </div>
   </div>
 </div>
@@ -203,18 +198,14 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@InProceedings{nagar2025inverseflow,
-        title = {Parallel Backpropagation for Inverse of a Convolution with Application to Normalizing Flows},
-        author = Nagar, Sandeep and Varma, Girish}
-        booktitle = {Proceedings of The 28th International Conference on Artificial Intelligence and Statistics},
-        year = {2025},
-        volume = {239},
-        series = {Proceedings of Machine Learning Research},
-        month = {03--05 May},
-        publisher = {PMLR},
-        pdf = {https://arxiv.org/pdf/2410.14634},
-        url = {https://arxiv.org/abs/2410.14634},
-      }</code></pre>
+      <pre><code>@inproceedings{
+        nagar2021cinc,
+        title={{CI}nC Flow: Characterizable Invertible 3\${\textbackslash}times\$3 Convolution},
+        author={Sandeep Nagar and Marius Dufraisse and Girish Varma},
+        booktitle={The 4th Workshop on Tractable Probabilistic Modeling},
+        year={2021},
+        url={https://openreview.net/forum?id=kl1ds_AeLRM}
+        }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->

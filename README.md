@@ -1,7 +1,7 @@
 #  Project Page
-This is an Inverse-Flow paper project page.
+This is an CInCFlow paper project page.
 
-url: [projectPage_InverseFlow](https://naagar.github.io/projectPage_InverseFlow/)
+url: [project_page_CInCFlow](https://naagar.github.io/project_page_CInCFlow/)
 
 
 
