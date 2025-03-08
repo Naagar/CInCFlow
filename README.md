@@ -1,7 +1,7 @@
 #  CInC Flow Project Page
 This is a CInCFlow paper project page.
 
-url: [CInCFlow](https://naagar.github.io/project_page_CInCFlow/)
+url: [CInCFlow](https://naagar.github.io/CInCFlow/)
 ## [Paper](https://openreview.net/forum?id=kl1ds_AeLRM)
 
 
